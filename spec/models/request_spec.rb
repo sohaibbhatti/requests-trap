@@ -16,4 +16,18 @@ RSpec.describe Request, :type => :model do
     request.data = nil
     expect { request.save }.to raise_error(ActiveRecord::StatementInvalid)
   end
+
+
+  it 'removes rails specific data from the request' do
+    request.data = {
+      'REQUEST_METHOD' => 'POST',
+      "REMOTE_ADDR" => "0.0.0.0" ,
+      "QUERY_STRING" => "waffle%5Bfoo%5D=bar",
+      "action_dispatch.parameter_filter" => [:password],
+      "rack.run_once" => false
+    }
+    request.save
+
+    expect(request.data.keys).to include('REQUEST_METHOD', 'REMOTE_ADDR', 'QUERY_STRING')
+  end
 end
