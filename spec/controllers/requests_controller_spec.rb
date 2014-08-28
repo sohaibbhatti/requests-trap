@@ -27,10 +27,29 @@ RSpec.describe RequestsController, :type => :controller do
         expect(request_data['HTTP_X_AUTH_TOKEN']).to eql 'auth-token'
       end
 
-      it 'returns a sucesful response' do
+      it 'returns a success response' do
         post :create, trap_id: 'waffle', data: { foo: 'bar' }
         expect(response.code).to eql '201'
         expect(response.body).to eq({ok: true}.to_json)
+      end
+    end
+
+    context 'failure' do
+      it 'notifies in the event of being unable to save' do
+        Request.stub_chain(:new, :save).and_return false
+
+        post :create, trap_id: 'waffle', data: { foo: 'bar' }
+        expect(response.code).to eql '400'
+        expect(response.body).to eq({ok: false}.to_json)
+      end
+
+      it 'notifies in the event of a crash' do
+        trap_request = Request.new
+        allow(Request).to receive(:new) { trap_request }
+
+        post :create, trap_id: 'waffle', data: { foo: 'bar' }
+        expect(response.code).to eql '500'
+        expect(response.body).to eq({ok: false}.to_json)
       end
     end
   end
