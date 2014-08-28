@@ -1,0 +1,13 @@
+.splash {
+  max-width: 730px;
+  margin: 0 auto;
+  margin-top: 5%;
+
+  .features {
+    margin: 40px 0;
+
+    p + h4 {
+      margin-top: 28px;
+    }
+  }
+}

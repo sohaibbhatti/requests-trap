@@ -1,2 +1,20 @@
-h1 Welcome#index
-p Find me in app/views/welcome/index.html.slim
+.splash
+  .jumbotron.text-center
+    h1 Requests Trap
+    p.lead A tool for capturing and displaying HTTP requests! Useful during the development of apps that integrate with external services such as http clients, webhooks, etc.
+
+  .row.features
+    .col-lg-6
+      h4
+        strong View listing of requests
+      p A listing of requests can be seen at /:trap_id/requests
+      h4
+        strong Server Sent Events!
+      p Instead of polling, Requests Trap utilizes  Rails 4 Server Sent events.
+    .col-lg-6
+      h4
+        strong View specific request
+      p A listing of requests can be seen at /:trap_id/requests/:id
+      h4
+        strong PostgreSQL Event Listeners
+      p Handles Event listening using PostgreSQL's NOTIFY/LISTEN
