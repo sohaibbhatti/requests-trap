@@ -6,6 +6,9 @@ class RequestsController < ApplicationController
   #LABEL /:trap_id
   # etc....
   def create
-    render json: { ok: true }, status: 200
+    trap_request = Request.new trap_name: params[:trap_id], data: request.env
+    if trap_request.save
+      render json: { ok: true }, status: 201
+    end
   end
 end
