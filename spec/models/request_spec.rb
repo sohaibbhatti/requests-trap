@@ -9,11 +9,11 @@ RSpec.describe Request, :type => :model do
 
   it 'requires the trap to be present' do
     request.trap_name = nil
-    expect {  request.save }.to raise_error(ActiveRecord::StatementInvalid)
+    expect { request.save }.to raise_error(ActiveRecord::StatementInvalid)
   end
 
   it 'requires the data to be present' do
     request.data = nil
-    expect {  request.save }.to raise_error(ActiveRecord::StatementInvalid)
+    expect { request.save }.to raise_error(ActiveRecord::StatementInvalid)
   end
 end
