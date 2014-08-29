@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   match '/:trap_id',            to: 'requests#create', via: :all
   get '/:trap_id/requests',     to: 'requests#index', as: 'requests'
   get '/:trap_id/requests/:id', to: 'requests#show',  as: 'request'
+
+  get '/:trap_id/stream', to: 'requests_stream#event'
 end
