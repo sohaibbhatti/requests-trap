@@ -3,7 +3,7 @@ class Request
     @toggleRawResponse()
 
   toggleRawResponse: ->
-    $('.request dt a').on 'click', ->
+    $('.container').on 'click', '.request dt a',  ->
       $(this).parent().next().toggleClass 'hide'
 
 jQuery ->
