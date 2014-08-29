@@ -1,0 +1,10 @@
+.request
+  h4
+    = link_to request.id, request_path(params[:trap_id], request)
+    span.pull-right= request.created_at
+
+  dl.dl-horizontal
+    - request.data.each do |key, value|
+      dt= key
+      dd= value
+

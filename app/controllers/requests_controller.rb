@@ -5,6 +5,11 @@ class RequestsController < ApplicationController
     @trap_requests = Request.by_trap_name params[:trap_id]
   end
 
+  #GET /:trap_id/requests/:id
+  def show
+    @trap_request = Request.find_by_trap_name_and_id(params[:trap_id], params[:id])
+  end
+
   #POST  /:trap_id
   #GET   /:trap_id
   #PUT   /:trap_id
