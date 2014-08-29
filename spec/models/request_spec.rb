@@ -31,6 +31,13 @@ RSpec.describe Request, :type => :model do
     expect(request.data.keys).to include('REQUEST_METHOD', 'REMOTE_ADDR', 'QUERY_STRING')
   end
 
+  it 'notifies on the stream' do
+    stream = double('stream', 'publish!' => true)
+    allow(StreamHandler).to receive(:new) { stream }
+    request.save
+    expect(stream).to have_received(:publish!).with request.id
+  end
+
   describe '.by_trap_name' do
     let!(:request_one)   { Request.create trap_name: 'fire_field', data: { kung: 'foo'} }
     let!(:request_two)   { Request.create trap_name: 'fire_and_ice', data: { kung: 'foo'} }
