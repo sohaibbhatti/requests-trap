@@ -36,6 +36,9 @@ gem 'spring',        group: :development
 # Use unicorn as the app server
 # gem 'unicorn'
 
+# Use puma as the app server
+gem 'puma'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -45,4 +48,6 @@ gem 'pry-rails', group: [:development, :test]
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
+  gem 'capybara'
+  gem 'database_cleaner'
 end
