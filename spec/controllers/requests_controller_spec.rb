@@ -1,6 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe RequestsController, :type => :controller do
+  describe 'index' do
+    it "returns http success" do
+      get :index, trap_id: 'waffle'
+      expect(response).to be_success
+    end
+  end
+
   describe 'create' do
     it 'handles multipe HTTP request VERBS ' do
       post :create, trap_id: 'waffle'

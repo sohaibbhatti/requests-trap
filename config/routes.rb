@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   match '/:trap_id', :to => 'requests#create', via: :all
+  get '/:trap_id/requests', to: 'requests#index'
 end

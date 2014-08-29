@@ -1,5 +1,10 @@
 class RequestsController < ApplicationController
 
+  #GET /:trap_id/requests
+  def index
+    @trap_requests = Request.by_trap_name params[:trap_id]
+  end
+
   #POST  /:trap_id
   #GET   /:trap_id
   #PUT   /:trap_id
