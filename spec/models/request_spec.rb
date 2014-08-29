@@ -30,4 +30,29 @@ RSpec.describe Request, :type => :model do
 
     expect(request.data.keys).to include('REQUEST_METHOD', 'REMOTE_ADDR', 'QUERY_STRING')
   end
+
+  describe '.by_trap_name' do
+    it 'returns requests with the specified trap name' do
+      request_one   = Request.create trap_name: 'fire_field', data: { kung: 'foo'}
+      request_two   = Request.create trap_name: 'fire_and_ice', data: { kung: 'foo'}
+      request_three = Request.create trap_name: 'fire_field', data: { kung: 'foo'}
+
+
+      result = Request.by_trap_name 'fire_field'
+      expect(result.size).to eql(2)
+      expect(result.pluck(:trap_name).uniq).to eql ['fire_field']
+    end
+
+    it 'returns requests in descending order' do
+      request_one   = Request.create trap_name: 'fire_field', data: { kung: 'foo'}
+      request_two   = Request.create trap_name: 'fire_and_ice', data: { kung: 'foo'}
+      request_three = Request.create trap_name: 'fire_field', data: { kung: 'foo'}
+
+
+      result = Request.by_trap_name 'fire_field'
+      expect(result[0]).to eql request_three
+      expect(result[1]).to eql request_one
+
+    end
+  end
 end

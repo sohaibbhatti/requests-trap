@@ -1,6 +1,8 @@
 class Request < ActiveRecord::Base
   before_create :siphon_rails_data
 
+  scope :by_trap_name, ->(trap_name) {where(trap_name: trap_name).order('created_at DESC') }
+
   private
 
   def siphon_rails_data
