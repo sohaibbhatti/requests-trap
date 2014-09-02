@@ -17,9 +17,8 @@ class StreamHandler
     @connection.execute "Listen #{@channel_name}"
 
     loop do
-      wait_for_notify do |event, pid, message|
-        yield message
-      end
+      message = wait_for_notify
+      yield message unless message.nil?
     end
 
   ensure
@@ -33,6 +32,8 @@ class StreamHandler
   private
 
   def wait_for_notify(timeout = 0.5)
-    @connection.raw_connection.wait_for_notify(timeout)
+    @connection.raw_connection.wait_for_notify(timeout) do |event, pid, message|
+      return message
+    end
   end
 end
