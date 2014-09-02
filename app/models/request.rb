@@ -17,6 +17,6 @@ class Request < ActiveRecord::Base
 
   # Rails adds additional keys to the request.
   def is_rails_related_data?(key)
-    key.starts_with? 'action_controller.', 'action_dispatch.', 'rack.'
+    key.starts_with? 'action_controller.', 'action_dispatch.', 'rack.', 'puma.'
   end
 end
