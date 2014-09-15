@@ -16,12 +16,12 @@ A live demo of Requests Trap can be viewed
 ## Routes
   The app has four routes:
 
-  ,----
-  | /                       # splash page with some instructions
-  | /:trap_id               # send requests to be captured here
-  | /:trap_id/requests      # display requests here
-  | /:trap_id/requests/:id  # display a single request here
-  `----
+| Route                  | Description                           |
+|------------------------|---------------------------------------|
+| /                      | Splash Page with some instructions    |
+| /:trap_id              | Requests to be captured are sent here |
+| /:trap_id/requests     | Display/view live stream of requests  |
+| /:trap_id/requests/:id | View a single request                 |
 
 ## Setting up
 
